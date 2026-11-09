@@ -1,6 +1,6 @@
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
-from typing import TypedDict
+from typing import TypedDict,Annotated
 from pathlib import Path
 
 load_dotenv()
@@ -15,8 +15,8 @@ model=ChatGroq(
 
 # schema
 class review(TypedDict):
-    summary:str
-    sentiment:str
+    summary:Annotated[str,"A brief summary of the review"]
+    sentiment:Annotated[str,"Return the sentiment of the review either negative ,positive or neutral"]
 
 structured_model=model.with_structured_output(review)
 
