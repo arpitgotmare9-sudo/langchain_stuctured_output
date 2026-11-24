@@ -1,6 +1,6 @@
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
-from typing import TypedDict,Annotated,Optional
+from typing import TypedDict,Annotated,Optional,Literal
 from pathlib import Path
 from pydantic import BaseModel,Field
 
@@ -15,12 +15,13 @@ model=ChatGroq(
 )
 
 # schema
-class review(TypedDict):
-    key:Annotated[list[str],"Write down all the key attributes mentioned in the review in the list"]
-    summary:Annotated[str,"A brief summary of the review"]
-    sentiment:Annotated[str,"Return the sentiment of the review either negative ,positive or neutral"]
-    pros:Annotated[Optional[list[str]],"Write all the pros mentioned in the review in the form of list"]
-    corns:Annotated[Optional[list[str]],"Write down all the corns present in the review in the form of list"]
+class review(BaseModel):
+    key_themes: list[str] = Field(description="Write down all the key themes discussed in the review in a list")
+    summary: str = Field(description="A brief summary of the review")
+    sentiment: Literal["pos", "neg"] = Field(description="Return sentiment of the review either negative, positive or neutral")
+    pros: Optional[list[str]] = Field(default=None, description="Write down all the pros inside a list")
+    cons: Optional[list[str]] = Field(default=None, description="Write down all the cons inside a list")
+    name: Optional[str] = Field(default=None, description="Write the name of the reviewer")
 
 structured_model=model.with_structured_output(review)
 
@@ -38,9 +39,4 @@ S-Pen support is unique and useful
                                  
 Review by Nitish Singh
 """)
-#print(result)
-print(result['sentiment'])
-print(result['summary'])
-print(result['pros'])
-print(result['corns'])
-print(result['key'])
+print(result)
