@@ -9,4 +9,5 @@ new_student={'name':'Arpit','branch':'ai'}
 
 student=student(**new_student)
 
-print(student)
+print(student.name)
+print(student.branch)
