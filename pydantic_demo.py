@@ -1,4 +1,4 @@
-from pydantic import BaseModel,EmailStr
+from pydantic import BaseModel,EmailStr,Field
 from typing import Optional
 
 class student(BaseModel):
@@ -7,8 +7,9 @@ class student(BaseModel):
     branch:str
     age : Optional[int]=18
     email :EmailStr
+    cgpa : float=Field(gt=0,lt=10) 
 
-new_student={'name':'Arpit','branch':'ai','email':'abc@gmail.com'}
+new_student={'name':'Arpit','branch':'ai','email':'abc@gmail.com','cgpa':8.5}
 
 student=student(**new_student)
 
@@ -16,3 +17,4 @@ print(student.name)
 print(student.branch)
 print(student.age)
 print(student.email)
+print(student.cgpa)
