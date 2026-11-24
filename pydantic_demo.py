@@ -5,8 +5,11 @@ class student(BaseModel):
 
     name: str
     branch:str
+    # it is for the optional purpose put age or else it will default to 18
     age : Optional[int]=18
+    #used for correct email check
     email :EmailStr
+    #Used for the condition
     cgpa : float=Field(gt=0,lt=10) 
 
 new_student={'name':'Arpit','branch':'ai','email':'abc@gmail.com','cgpa':8.5}
