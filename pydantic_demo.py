@@ -8,7 +8,7 @@ class student(BaseModel):
     age : Optional[int]=18
     email :EmailStr
 
-new_student={'name':'Arpit','branch':'ai','email':'abc'}
+new_student={'name':'Arpit','branch':'ai','email':'abc@gmail.com'}
 
 student=student(**new_student)
 
