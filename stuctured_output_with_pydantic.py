@@ -4,11 +4,13 @@ from typing import TypedDict,Annotated,Optional,Literal
 from pathlib import Path
 from pydantic import BaseModel,Field
 
+#Load the api key
 load_dotenv()
 
 script_dir = Path(__file__).resolve().parent
 load_dotenv(dotenv_path=script_dir / "env.env")
 
+# We use stuctured output with the pydantic than the typdict.
 
 model=ChatGroq(
     model="openai/gpt-oss-120b"
@@ -39,4 +41,5 @@ S-Pen support is unique and useful
                                  
 Review by Nitish Singh
 """)
+# Print the result
 print(result)
