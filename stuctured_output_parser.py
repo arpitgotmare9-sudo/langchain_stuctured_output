@@ -17,14 +17,13 @@ model=ChatGroq(
     model="openai/gpt-oss-120b"
 )
 
+# Schma for the output (stucture of the output we want) 
 schema=[
     ResponseSchema(name='fact_1',description='fact 1 about the topic'),
     ResponseSchema(name='fact_2',description='fact 2 about the topic'),
     ResponseSchema(name='fact_3',description='fact 3 about the topic')
 ]
-
-parser=StructuredOutputParser.from_response_schemas(schema)
-
+# Promt template for the model
 template = PromptTemplate(
     template='Give me 3 facts about {topic} \n {format_instruction}',
     input_variables=['topic'],
