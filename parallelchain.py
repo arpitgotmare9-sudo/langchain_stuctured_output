@@ -31,6 +31,7 @@ promt3 = PromptTemplate(
 
 parser=StrOutputParser()
 
+# Two parrel chains are use to perform two tasks in parallel
 parallel_chain=RunnableParallel({
     'notes': promt1 | model | parser,
     'quiz' : promt2 | model | parser
