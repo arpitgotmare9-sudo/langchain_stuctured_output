@@ -14,7 +14,9 @@ model=ChatGroq(
     model="openai/gpt-oss-120b"
 )
 
+
 parser=StrOutputParser()
+
 
 prompt1 = PromptTemplate(
     template='Write a joke about {topic}',
